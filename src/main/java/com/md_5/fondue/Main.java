@@ -51,6 +51,7 @@ public class Main extends WorkbenchImpl {
             Main instance = new Main();
             Workbench.setInstance(instance);
             instance.server = new FondueServer(options);
+            instance.server.start();
         }
     }
 
