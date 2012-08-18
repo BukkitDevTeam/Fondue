@@ -19,7 +19,7 @@ public class FondueBanList implements BanList {
 
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return enabled;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class FondueBanList implements BanList {
 
     @Override
     public Map<String, BanEntry> getEntries() {
-        return this.entries;
+        return entries;
     }
 
     @Override

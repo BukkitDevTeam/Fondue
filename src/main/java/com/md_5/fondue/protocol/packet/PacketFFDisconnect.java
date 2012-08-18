@@ -26,4 +26,8 @@ public class PacketFFDisconnect extends Packet {
     public void write(ByteBuf out) {
         writeString(out, reason);
     }
+
+    public String getReason() {
+        return reason;
+    }
 }

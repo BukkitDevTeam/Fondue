@@ -45,12 +45,12 @@ public class FondueServer implements Server {
                 ch.pipeline().addLast(new Decoder(), new Encoder(), new Handler());
             }
         });
-        bootstrap.bind().syncUninterruptibly();
+        bootstrap.bind();
     }
 
     @Override
     public BanList getBanList() {
-        return this.banlist;
+        return banlist;
     }
 
     @Override

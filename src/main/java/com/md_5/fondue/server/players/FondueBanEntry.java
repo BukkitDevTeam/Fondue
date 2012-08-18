@@ -33,12 +33,12 @@ public class FondueBanEntry implements BanEntry {
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
     public Date getCreated() {
-        return this.created;
+        return created;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FondueBanEntry implements BanEntry {
 
     @Override
     public String getSource() {
-        return this.source;
+        return source;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class FondueBanEntry implements BanEntry {
 
     @Override
     public Date getExpires() {
-        return this.expires;
+        return expires;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class FondueBanEntry implements BanEntry {
 
     @Override
     public String getReason() {
-        return this.reason;
+        return reason;
     }
 
     @Override

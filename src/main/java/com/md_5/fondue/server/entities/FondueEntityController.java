@@ -16,6 +16,6 @@ public class FondueEntityController implements EntityController {
 
     @Override
     public Entity getControlledEntity() {
-        return this.entity;
+        return entity;
     }
 }

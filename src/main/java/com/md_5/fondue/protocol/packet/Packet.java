@@ -102,6 +102,7 @@ public abstract class Packet {
      * Register all known packets
      */
     static {
+        addMapping(0x02, Packet2Handshake.class);
         addMapping(0xFE, PacketFEServerPing.class);
         addMapping(0xFF, PacketFFDisconnect.class);
     }

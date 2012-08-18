@@ -31,21 +31,21 @@ public class FonduePlayer implements Player {
 
     @Override
     public UUID getUUID() {
-        return this.uuid;
+        return uuid;
     }
 
     @Override
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     @Override
     public String getDisplayName() {
-        return this.displayName;
+        return displayName;
     }
 
     @Override
     public Entity getControlledEntity() {
-        return this.controlledEntity;
+        return controlledEntity;
     }
 }
