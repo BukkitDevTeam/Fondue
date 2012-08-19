@@ -51,7 +51,11 @@ public class Main extends WorkbenchImpl {
             Main instance = new Main();
             Workbench.setInstance(instance);
             instance.server = new FondueServer(options);
-            instance.server.start();
+            try {
+                instance.server.start();
+            } catch (Exception ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

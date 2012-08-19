@@ -1,5 +1,6 @@
 package com.md_5.fondue.server;
 
+import com.md_5.fondue.LanServerPingThread;
 import com.md_5.fondue.protocol.Decoder;
 import com.md_5.fondue.protocol.Encoder;
 import com.md_5.fondue.protocol.Handler;
@@ -9,6 +10,8 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioEventLoop;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.timeout.ReadTimeoutHandler;
+import java.io.IOException;
 import joptsimple.OptionSet;
 import net.minecraft.workbench.server.Server;
 import net.minecraft.workbench.server.players.BanList;
@@ -24,6 +27,9 @@ public class FondueServer implements Server {
      * The current {@link BanList}, null if no list has been loaded.
      */
     private BanList banlist;
+    /**
+     * The bootstrap used to control this server and it's sockets.
+     */
     private ServerBootstrap bootstrap;
 
     public FondueServer(OptionSet options) {
@@ -34,7 +40,7 @@ public class FondueServer implements Server {
      * Starts this server instance, will not return until the server is
      * destroyed
      */
-    public void start() {
+    public void start() throws IOException {
         bootstrap = new ServerBootstrap()
                 .eventLoop(new NioEventLoop(0, new NamedThreadFactory("Listen Thread - ")), new NioEventLoop(0, new NamedThreadFactory("Connection - ")))
                 .channel(new NioServerSocketChannel())
@@ -42,10 +48,12 @@ public class FondueServer implements Server {
                 .childHandler(new ChannelInitializer() {
             @Override
             public void initChannel(Channel ch) throws Exception {
-                ch.pipeline().addLast(new Decoder(), new Encoder(), new Handler());
+                ch.pipeline().addLast(new ReadTimeoutHandler(30), new Decoder(), new Encoder(), new Handler());
             }
         });
         bootstrap.bind();
+
+        new LanServerPingThread().start();
     }
 
     @Override
