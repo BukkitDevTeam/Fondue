@@ -45,10 +45,7 @@ public abstract class Packet {
      * @return this packet's id
      */
     public final int getId() {
-        if (id == -1) {
-            id = byClass.get(getClass());
-        }
-        return id;
+        return (id == -1) ? id = byClass.get(id) : id;
     }
 
     /**
@@ -99,10 +96,45 @@ public abstract class Packet {
     }
 
     /**
+     * Writes some bytes to the output buffer, with a short length header.
+     *
+     * @param out the buffer to write into
+     * @param b the bytes to write
+     */
+    public static void writeBytes(ByteBuf out, byte[] b) {
+        out.writeShort(b.length);
+        out.writeBytes(b);
+    }
+
+    /**
+     * Reads a short headered byte array from the specified {@link ByteBuf}
+     *
+     * @param in the ByteBuf to read from
+     * @return the read byte array
+     */
+    public static byte[] readBytes(ByteBuf in) {
+        short len = in.readShort();
+        Validate.isTrue(len < Short.MAX_VALUE, "Byte array too long!");
+
+        byte[] bytes = new byte[len];
+        in.readBytes(bytes);
+        return bytes;
+    }
+
+    /**
      * Register all known packets
      */
     static {
+        addMapping(0x00, Packet0KeepAlive.class);
+        addMapping(0x01, Packet1Login.class);
         addMapping(0x02, Packet2Handshake.class);
+        addMapping(0x03, Packet3ChatMessage.class);
+        addMapping(0x07, Packet7UseEntity.class);
+        addMapping(0x0B, PacketBPosition.class);
+        addMapping(0x0C, PacketCLook.class);
+        addMapping(0x0D, PacketDPositionLook.class);
+        addMapping(0xFC, PacketFCKeyResponse.class);
+        addMapping(0xFD, PacketFDKeyRequest.class);
         addMapping(0xFE, PacketFEServerPing.class);
         addMapping(0xFF, PacketFFDisconnect.class);
     }

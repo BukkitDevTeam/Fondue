@@ -77,6 +77,11 @@
             <version>1.47</version>
         </dependency>
         <dependency>
+            <groupId>org.spout</groupId>
+            <artifactId>simplenbt</artifactId>
+            <version>1.0.4-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.7.2</version>
@@ -101,6 +106,14 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <!-- Provides us with Simple NBT -->
+        <repository>
+            <id>spout-repo</id>
+            <url>http://repo.spout.org</url>
+        </repository>
+    </repositories>
 
     <pluginRepositories>
         <!-- Provides us with the gitdescribe plugin -->
