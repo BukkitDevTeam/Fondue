@@ -70,7 +70,7 @@ public abstract class Packet {
      * @param str the String to write
      */
     public static void writeString(ByteBuf out, String str) {
-        Validate.isTrue(str.length() < Short.MAX_VALUE, "String length too long!");
+        Validate.isTrue(str.length() < 240, "String length cannot be greater 240 characters."); // Maximum length, in practice, is 240 characters
 
         out.writeShort(str.length());
         for (char c : str.toCharArray()) {
