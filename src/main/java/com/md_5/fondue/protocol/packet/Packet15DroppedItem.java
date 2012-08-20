@@ -1,7 +1,11 @@
 package com.md_5.fondue.protocol.packet;
 
 import io.netty.buffer.ByteBuf;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class Packet15DroppedItem extends Packet1EEntity {
 
     private short itemId;

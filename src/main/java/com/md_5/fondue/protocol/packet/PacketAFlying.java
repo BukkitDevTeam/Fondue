@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public abstract class PacketAFlying extends Packet {
+public class PacketAFlying extends Packet {
 
     protected boolean onGround;
     protected double x;

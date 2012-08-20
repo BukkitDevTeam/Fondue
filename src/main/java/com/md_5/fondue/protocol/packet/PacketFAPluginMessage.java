@@ -6,26 +6,23 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class Packet83MapData extends Packet {
+public class PacketFAPluginMessage extends Packet {
 
-    private short itemId;
-    private short itemData;
+    private String channel;
     private byte[] data;
 
-    public Packet83MapData() {
+    public PacketFAPluginMessage() {
     }
 
     @Override
     public void read(ByteBuf in) {
-        itemId = in.readShort();
-        itemData = in.readShort();
+        channel = readString(in);
         data = readBytes(in);
     }
 
     @Override
     public void write(ByteBuf out) {
-        out.writeShort(itemId);
-        out.writeShort(itemData);
+        writeString(out, channel);
         writeBytes(out, data);
     }
 }
