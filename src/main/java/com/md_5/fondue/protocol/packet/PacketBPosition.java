@@ -6,12 +6,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class PacketBPosition extends PacketAOnGround {
-
-    private double x;
-    private double y;
-    private double stance;
-    private double z;
+public class PacketBPosition extends PacketAFlying {
 
     public PacketBPosition() {
     }

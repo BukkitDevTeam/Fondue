@@ -6,14 +6,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class PacketDPositionLook extends PacketAOnGround {
-
-    private double x;
-    private double y;
-    private double stance;
-    private double z;
-    private float yaw;
-    private float pitch;
+public class PacketDPositionLook extends PacketAFlying {
 
     public PacketDPositionLook() {
     }

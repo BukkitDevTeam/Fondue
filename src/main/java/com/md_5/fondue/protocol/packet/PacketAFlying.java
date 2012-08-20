@@ -6,11 +6,17 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public abstract class PacketAOnGround extends Packet {
+public abstract class PacketAFlying extends Packet {
 
-    private boolean onGround;
+    protected boolean onGround;
+    protected double x;
+    protected double y;
+    protected double stance;
+    protected double z;
+    protected float yaw;
+    protected float pitch;
 
-    public PacketAOnGround() {
+    public PacketAFlying() {
     }
 
     @Override
