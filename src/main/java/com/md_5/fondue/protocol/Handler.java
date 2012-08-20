@@ -1,6 +1,7 @@
 package com.md_5.fondue.protocol;
 
 import com.md_5.fondue.protocol.packet.Packet;
+import com.sun.istack.internal.logging.Logger;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundMessageHandlerAdapter;
 
@@ -19,6 +20,6 @@ public class Handler extends ChannelInboundMessageHandlerAdapter<Packet> {
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, Packet msg) throws Exception {
-        System.out.println("Received packet" + msg);
+        System.out.println("Received packet " + msg);
     }
 }
