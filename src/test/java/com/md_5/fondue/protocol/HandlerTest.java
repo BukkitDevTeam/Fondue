@@ -1,10 +1,8 @@
 package com.md_5.fondue.protocol;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class HandlerTest {
 
@@ -13,7 +11,12 @@ public class HandlerTest {
      */
     @Test
     public void doTest() throws NoSuchMethodException {
-        checkImplements(new ServerHandler());
+        check(new ServerHandler());
+    }
+
+    private void check(PacketHandler handler) throws NoSuchMethodException {
+        checkImplements(handler);
+        checkExcludes(handler);
     }
 
     /**
@@ -23,6 +26,19 @@ public class HandlerTest {
         for (Method m : PacketHandler.class.getDeclaredMethods()) {
             if (m.isAnnotationPresent(handler.getType())) {
                 getOther(m, handler.getClass());
+            }
+        }
+    }
+
+    /**
+     * Checks that the specified handler DOES NOT implement methods from other
+     * handler types
+     */
+    public void checkExcludes(PacketHandler handler) throws NoSuchMethodException {
+        for (Method m : handler.getClass().getDeclaredMethods()) {
+            Method parent = getOther(m, PacketHandler.class);
+            if (parent.getAnnotations().length > 0) {
+                assertTrue(m + " includes type not suitable for " + handler.getType().getSimpleName(), parent.isAnnotationPresent(handler.getType()));
             }
         }
     }
