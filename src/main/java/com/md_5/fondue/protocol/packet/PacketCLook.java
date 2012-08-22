@@ -9,6 +9,7 @@ import lombok.ToString;
 public class PacketCLook extends PacketAFlying {
 
     public PacketCLook() {
+        this.hasLook = true;
     }
 
     @Override

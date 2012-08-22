@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -33,5 +34,10 @@ public class Packet9Respawn extends Packet {
         out.writeByte(gameMode);
         out.writeShort(worldHeight);
         writeString(out, levelType);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

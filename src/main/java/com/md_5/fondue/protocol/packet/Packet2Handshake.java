@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -30,5 +31,10 @@ public class Packet2Handshake extends Packet {
         writeString(out, username);
         writeString(out, host);
         out.writeInt(port);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        handler.handle(this);
     }
 }

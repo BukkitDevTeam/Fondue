@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -27,5 +28,10 @@ public class Packet6AConfirmTransaction extends Packet {
         out.writeByte(windowId);
         out.writeShort(actionNumber);
         out.writeBoolean(accepted);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        handler.handle(this);
     }
 }

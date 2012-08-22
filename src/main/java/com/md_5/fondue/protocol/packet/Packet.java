@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import io.netty.buffer.ByteBuf;
 import org.apache.commons.lang3.Validate;
@@ -62,6 +63,14 @@ public abstract class Packet {
      * @param out the ByteBuf to write into
      */
     public abstract void write(ByteBuf out);
+
+    /**
+     * Handle this method with a given handler. This is a must for performance
+     * reasons.
+     *
+     * @param handler the handler to handle this packet
+     */
+    public abstract void handle(PacketHandler handler);
 
     /**
      * Writes the specified String, encoded in the Minecraft String format.

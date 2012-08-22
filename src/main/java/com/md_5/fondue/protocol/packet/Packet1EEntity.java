@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class Packet1EEntity extends Packet {
+public abstract class Packet1EEntity extends Packet {
 
     protected int entityId;
 

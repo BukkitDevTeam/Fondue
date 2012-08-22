@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -30,5 +31,10 @@ public class Packet64OpenWindow extends Packet {
         out.writeByte(inventoryType);
         writeString(out, windowTitle);
         out.writeByte(slotCount);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

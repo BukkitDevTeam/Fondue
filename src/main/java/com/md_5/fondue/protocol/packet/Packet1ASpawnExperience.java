@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -32,5 +33,10 @@ public class Packet1ASpawnExperience extends Packet1EEntity {
         out.writeInt(y);
         out.writeInt(z);
         out.writeShort(amount);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

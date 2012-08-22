@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -29,5 +30,10 @@ public class Packet29SoundEffect extends Packet1EEntity {
         out.writeByte(effectId);
         out.writeByte(amplifier);
         out.writeShort(duration);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

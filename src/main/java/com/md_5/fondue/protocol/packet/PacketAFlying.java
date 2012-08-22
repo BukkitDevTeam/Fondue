@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -8,6 +9,9 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class PacketAFlying extends Packet {
 
+    protected boolean hasLocation;
+    protected boolean hasLook;
+    //
     protected boolean onGround;
     protected double x;
     protected double y;
@@ -27,5 +31,10 @@ public class PacketAFlying extends Packet {
     @Override
     public void write(ByteBuf out) {
         out.writeBoolean(onGround);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        handler.handle(this);
     }
 }

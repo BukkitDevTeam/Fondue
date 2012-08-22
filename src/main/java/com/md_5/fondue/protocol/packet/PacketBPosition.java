@@ -9,6 +9,7 @@ import lombok.ToString;
 public class PacketBPosition extends PacketAFlying {
 
     public PacketBPosition() {
+        this.hasLocation = true;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -30,5 +31,10 @@ public class PacketCCClientInfo extends Packet {
         out.writeByte(viewDistance);
         out.writeByte(chatFlags);
         out.writeByte(difficulty);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        handler.handle(this);
     }
 }

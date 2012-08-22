@@ -1,5 +1,6 @@
 package com.md_5.fondue.protocol.packet;
 
+import com.md_5.fondue.protocol.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -27,5 +28,10 @@ public class PacketCAPlayerAbilities extends Packet {
         out.writeByte(flags);
         out.writeByte(flyingSpeed);
         out.writeByte(walkingSpeed);
+    }
+
+    @Override
+    public void handle(PacketHandler handler) {
+        handler.handle(this);
     }
 }
