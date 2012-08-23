@@ -6,7 +6,7 @@ An up and coming Minecraft server API implementation.
 Helping Out
 -----------
 
-Help is always appreceated, and we will endeavour to look at your issues / pull requests as quickly as possible.
+Help is always appreciated, and we will endeavour to look at your issues / pull requests as quickly as possible.
 If you wish to help out, welcome! Familiarize yourself with the code and then contact md_5 on irc.esper.net to request repo access.
 The best place to contact us is #fondue on irc.esper.net
 

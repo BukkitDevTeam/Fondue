@@ -1,6 +1,8 @@
 package com.md_5.fondue.server;
 
 import com.md_5.fondue.LanServerPingThread;
+import com.md_5.fondue.Session;
+import com.md_5.fondue.SessionList;
 import com.md_5.fondue.protocol.Decoder;
 import com.md_5.fondue.protocol.Encoder;
 import com.md_5.fondue.protocol.Handler;
@@ -31,6 +33,10 @@ public class FondueServer implements Server {
      * The bootstrap used to control this server and it's sockets.
      */
     private ServerBootstrap bootstrap;
+    /**
+     * List of all active sessions on this server
+     */
+    private SessionList sessionList = new SessionList();
 
     public FondueServer(OptionSet options) {
         this.options = options;
@@ -48,7 +54,7 @@ public class FondueServer implements Server {
                 .childHandler(new ChannelInitializer() {
             @Override
             public void initChannel(Channel ch) throws Exception {
-                ch.pipeline().addLast(new ReadTimeoutHandler(30), new Decoder(), new Encoder(), new Handler());
+                ch.pipeline().addLast(new ReadTimeoutHandler(30), new Decoder(), new Encoder(), new Handler(FondueServer.this));
             }
         });
         bootstrap.bind();
@@ -65,5 +71,16 @@ public class FondueServer implements Server {
     public void setBanList(BanList banlist) {
         Validate.isTrue(banlist != null);
         this.banlist = banlist;
+    }
+    /*------------------------------------------------------------------------*/
+
+    public void addChannel(Session session) {
+        Validate.notNull(session, "Cannot add null session");
+        sessionList.add(session);
+    }
+
+    public void removeChannel(Session session) {
+        Validate.notNull(session, "Cannot remove nulll session");
+        sessionList.remove(session);
     }
 }
