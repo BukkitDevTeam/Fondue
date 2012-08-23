@@ -24,6 +24,16 @@
         </license>
     </licenses>
 
+    <scm>
+        <connection>scm:git:git://github.com/Fondue/Fondue.git</connection>
+        <developerConnection>scm:git:git@github.com:Fondue/Fondue.git</developerConnection>
+        <url>https://github.com/Fondue/Fondue</url>
+    </scm>
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://ci.ecocitycraft.com/job/Fondue</url>
+    </ciManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <api.version>0.0.1-SNAPSHOT</api.version>
